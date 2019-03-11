@@ -2,32 +2,27 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-body {
-    background-image: url('https://www.liveblogspot.com/wp-content/uploads/2018/10/waterfront-restaurants-in-the-city-of-Philadelphia.jpg');
-    background-size: cover;
-    overflow: hidden;
+:root {
+    --mdc-theme-primary: #6B0504;
+    --mdc-theme-background: #6B0504;
+    --mdc-theme-secondary: #A3320B;
 }
 
 #search-page-content {
     overflow: hidden;
     width: 100%;
-    margin: 15em 50px 15em 50px;
+    margin: 15em 50px 15em 0px;
     padding: 2em 50px 2em 50px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6)
 }
 
 #search-label {
     font-size: 48px;
     display: inline;
     vertical-align: middle;
-    color: white;
+    color: black;
 }
 
 #search-text-field {
     display: inline;
-}
-
-.mdc-top-app-bar {
-    background-color: #000000
 }

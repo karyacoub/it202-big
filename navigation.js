@@ -3,9 +3,6 @@ var navItems = [
 ];
 
 $(document).ready(function () {
-    // initialize all components with auto-init attributes
-    window.mdc.autoInit();
-
     loadDrawerNavigationElements(navItems);
 
     loadScreen('search');
