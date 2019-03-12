@@ -1,4 +1,4 @@
-var url = "https://api.yelp.com/v3/businesses/search?latitude=41.8704428&longitude=-87.6485634&term=Starbucks";
+var url = "https://api.yelp.com/v3/businesses/search?latitude=[LATITUDE]&longitude=[LONGITUDE]&term=[TERM]";
 
 $(document).ready(function() {
     $('#search-button').on('click', function() {
