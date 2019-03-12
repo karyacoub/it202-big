@@ -3,6 +3,8 @@ var navItems = [
 ];
 
 $(document).ready(function () {
+    window.mdc.autoInit();
+
     loadDrawerNavigationElements(navItems);
 
     loadScreen('search');
