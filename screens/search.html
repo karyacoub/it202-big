@@ -3,10 +3,13 @@
         <h1 class="description">Find restaurants near you with ease.</h1>
     </div>
     <div class="bottom-block-wrapper h-centered">
-        <div class="mdc-text-field mdc-text-field--no-label">
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
                 <input type="text" id="search-text-field" class="mdc-text-field__input" placeholder="Restaurant, City, Street, ...">
-                <div class="mdc-line-ripple"></div>
+                <label class="mdc-floating-label mdc-theme--primary" for="search-text-field">Search</label>
+                <div class="mdc-line-ripple" data-mdc-auto-init="MDCLineRipple"></div>
         </div>
-        <button id="search-button" class="mdc-button mdc-theme--secondary">Search</button>
+        <div class="align-with-label">
+            <button id="search-button" class="mdc-button mdc-theme--secondary">Go</button>
+        </div>
     </div>
 </div>

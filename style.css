@@ -19,6 +19,10 @@
     display: inline;
 }
 
+#search-button {
+    height: 15%;
+}
+
 h1.description {
     font-size: 72px;
     line-height: 72px;
@@ -48,4 +52,9 @@ h1.description {
     overflow: hidden;
     width: 100%;
     height: 50vh;
+}
+
+.align-with-label {
+    display: inline; 
+    vertical-align: 28%
 }
