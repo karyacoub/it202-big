@@ -9,7 +9,8 @@ $(document).ready(function() {
                 var searchTerm = getSearchTerm();
                 searchRestaurants(searchTerm, coordinates, function(businesses) {
                     // add returned restaurants list to restaurant-list page
-                    
+                    console.log(businesses);
+                    displaySearchResults(businesses.businesses);
                 });
 
                 // load restauraunt list page
@@ -54,7 +55,7 @@ function searchRestaurants(searchTerm, coordinates, callback)
 {
     var latitude = coordinates.latitude;
     var longitude = coordinates.longitude;
-    var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}`;
+    var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}&categories=food`;
     var proxyurl = 'https://cors-anywhere.herokuapp.com/';
 
     // Note: Proxy must be used to avoid browser blocking response from api due to CORS
@@ -70,4 +71,15 @@ function searchRestaurants(searchTerm, coordinates, callback)
             callback(response);
         }
      });
+}
+
+function displaySearchResults(businesses)
+{
+    businesses.forEach(function(business) {
+        // create card mdc div
+
+
+        // append card to restaurant list
+        
+    });
 }
