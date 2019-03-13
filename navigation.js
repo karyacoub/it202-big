@@ -52,6 +52,7 @@ function loadScreen(screenName)
     var screenPath = './screens/' + screenName + '.html';
     $('#content').load(screenPath, function()
     {
+        window.mdc.autoInit();
         console.log(screenName + ' screen loaded');
     });
 }
