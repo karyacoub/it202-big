@@ -27,6 +27,11 @@ body {
     height: 15%;
 }
 
+#restaurant-image {
+    width: 100%;
+    height: 100%;
+}
+
 h1.description {
     font-size: 72px;
     line-height: 72px;
@@ -64,18 +69,13 @@ h1.description {
 }
 
 .mdc-card {
-    height: 15%;
-    width: 50%;
-    padding: 16px;
-}
-
-#restaurant-image {
     width: 100%;
-    height: 100%;
+    padding: 16px 0px 16px 0px
 }
 
 .cropped-image {
     width: 100%;
-    height: 100%;
-    padding: 0px, 16px, 16px, 0px;
+    height: 25vh;
+    object-fit: cover;
+    padding-bottom: 16px
 }

@@ -77,7 +77,7 @@ function displaySearchResults(businesses)
 {
     businesses.forEach(function(business) {
         // create card mdc div
-
+        
 
         // append card to restaurant list
         
