@@ -82,21 +82,29 @@ function displaySearchResults(businesses)
    if(businesses.length == 0)
    {
        displayNoResults();
+       return;
    }
 
-    businesses.forEach(function(business) {
-        // clone card mdc div
-        var card = cardTemplate.clone();
+   businesses.forEach(function(business) {
+       console.log(business);
+       // clone card mdc div
+       var card = cardTemplate.clone();
+       
+       // set card's information
+       card.find('#restaurant-name').text(business.name);
 
-        // set card's information
-        card.find('#restaurant-name').text(business.name);
-        card.find('#restaurant-address').text(business.vicinity);
-        card.find('.cropped-image').attr('src', business.photos[0].getUrl());
-        var isOpen = business.opening_hours.open_now ? 'Open' : 'Closed';
-        card.find('#is-open').text(isOpen);
+       card.find('#restaurant-address').text(business.vicinity);
 
-        // append card to restaurant list
-        $('#restaurant-list').append(card);
+       if(business.photos !== undefined)
+       {
+           card.find('.cropped-image').attr('src', business.photos[0].getUrl());
+       }
+
+       var isOpen = business.opening_hours.open_now ? 'Open' : 'Closed';
+       card.find('#is-open').text(isOpen);
+
+       // append card to restaurant list
+       $('#restaurant-list').append(card);
     });
 }
 
