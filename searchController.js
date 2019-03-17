@@ -75,6 +75,7 @@ function displaySearchResults(businesses)
 {
     // clone a template for card search result
     var cardTemplate = $('.mdc-card').clone();
+    cardTemplate.removeClass('hidden');
 
     // clear restaurant list from previous search
    $('#restaurant-list').empty();
@@ -84,9 +85,12 @@ function displaySearchResults(businesses)
        displayNoResults();
        return;
    }
+   else
+   {
+       $('#no-results-div').addClass('hidden');
+   }
 
    businesses.forEach(function(business) {
-       console.log(business);
        // clone card mdc div
        var card = cardTemplate.clone();
        
@@ -100,8 +104,11 @@ function displaySearchResults(businesses)
            card.find('.cropped-image').attr('src', business.photos[0].getUrl());
        }
 
-       var isOpen = business.opening_hours.open_now ? 'Open' : 'Closed';
-       card.find('#is-open').text(isOpen);
+       if(business.opening_hours !== undefined)
+       {
+           var isOpen = business.opening_hours.open_now ? 'Open' : 'Closed';
+           card.find('#is-open').text(isOpen);
+       }
 
        // append card to restaurant list
        $('#restaurant-list').append(card);
@@ -110,15 +117,5 @@ function displaySearchResults(businesses)
 
 function displayNoResults()
 {
-    var div = $('<div>');
-    var h1 = $('<h1>');
-    
-    div.addClass('h-centered v-centered');
-    h1.addClass('description');
-
-    h1.text('No results found for specified query. Please try another.');
-
-    div.append(h1);
-
-    $('#restaurant-list').append(div);
+    $('#no-results-div h1').text('No results found for specified query. Please try another.');
 }

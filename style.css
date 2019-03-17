@@ -79,3 +79,7 @@ h1.description {
     object-fit: cover;
     padding-bottom: 16px
 }
+
+.hidden {
+    display: none
+}
