@@ -5,17 +5,16 @@ $(document).ready(function() {
             // get current user's location
             // Note: getLocation must take a callback function since getCurrentPosition() is asynchronous
             getLocation(function(coordinates) { 
-                // send out Yelp Fusion API call for restaurant search
+                // send out Google Places API call for restaurant search
                 var searchTerm = getSearchTerm();
                 searchRestaurants(searchTerm, coordinates, function(businesses) {
-                    // add returned restaurants list to restaurant-list page
-                    console.log(businesses);
-                    //displaySearchResults(businesses.businesses);
+                    // load restauraunt list page
+                    loadScreen('restaurant-list', function() { 
+                        // add returned restaurants list to restaurant-list page
+                        displaySearchResults(businesses); 
+                    });
                 });
             });
-
-            // load restauraunt list page
-            //loadScreen('restaurant-list');
         }
     });
 })
@@ -53,6 +52,8 @@ function getLocation(callback)
 
 function searchRestaurants(searchTerm, coordinates, callback)
 {
+    // https://developers.google.com/maps/documentation/javascript/places
+
     var latitude = coordinates.latitude;
     var longitude = coordinates.longitude;
 
@@ -62,41 +63,34 @@ function searchRestaurants(searchTerm, coordinates, callback)
             lat: latitude,
             lng: longitude
         },
-        radius: 5000,
+        radius: 10000,
         keyword: searchTerm,
         type: 'restaurant'
     }, function(response) {
         callback(response);
     });
-    
-    //var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}&categories=food`;
-    //var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.67684,-88.19741&radius=5000&type=restaurant&keyword=mcdonalds&key=AIzaSyDv7JkrSp-QFXIMUVnudICV6XWKLD5a8AY';
-    //var proxyurl = 'proxy.php?csurl=';
-
-    // Note: Proxy must be used to avoid browser blocking response from api due to CORS
-
-    /*$.ajax({
-        url: url,
-        method: 'GET',
-        headers: {
-            'Authorization' : 'Bearer tEig16TbTXlaUMjhaAWyccBhMt1-QnbyyFqguXFG_bA_AvQbDl9NB7K8MYrsGVihpBk5Funwyqa5WYtfIkUW7t6utrANeBhZQEBh-ndbOKbEZkLEfCixtoq0iF15XHYx',
-        },
-        success: function(response) {
-            callback(response);
-        },
-        error: function(e) {
-            console.log(e);
-        }
-     });*/
 }
 
 function displaySearchResults(businesses)
 {
+    // clone a template for card search result
+    var cardTemplate = $('.mdc-card').clone();
+
+    // clear restaurant list from previous search
+   $('#restaurant-list').empty();
+
     businesses.forEach(function(business) {
-        // create card mdc div
-        
+        // clone card mdc div
+        var card = cardTemplate.clone();
+
+        // set card's information
+        card.find('#restaurant-name').text(business.name);
+        card.find('#restaurant-address').text(business.vicinity);
+        card.find('.cropped-image').attr('src', business.photos[0].getUrl());
+
+        console.log(business);
 
         // append card to restaurant list
-        
+        $('#restaurant-list').append(card);
     });
 }

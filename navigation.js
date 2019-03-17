@@ -47,12 +47,13 @@ function loadDrawerNavigationElements(navItems)
     $("nav.mdc-list a:eq(0)").addClass("mdc-list-item--activated");
   }
 
-function loadScreen(screenName)
+function loadScreen(screenName, callback = function() {})
 {
     var screenPath = './screens/' + screenName + '.html';
     $('#content').load(screenPath, function()
     {
-        window.mdc.autoInit();
         console.log(screenName + ' screen loaded');
+        callback();
+        window.mdc.autoInit();
     });
 }
