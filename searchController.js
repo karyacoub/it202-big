@@ -10,12 +10,12 @@ $(document).ready(function() {
                 searchRestaurants(searchTerm, coordinates, function(businesses) {
                     // add returned restaurants list to restaurant-list page
                     console.log(businesses);
-                    displaySearchResults(businesses.businesses);
+                    //displaySearchResults(businesses.businesses);
                 });
-
-                // load restauraunt list page
-                loadScreen('restaurant-list');
             });
+
+            // load restauraunt list page
+            //loadScreen('restaurant-list');
         }
     });
 })
@@ -55,22 +55,39 @@ function searchRestaurants(searchTerm, coordinates, callback)
 {
     var latitude = coordinates.latitude;
     var longitude = coordinates.longitude;
-    var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}&categories=food`;
-    var proxyurl = 'https://cors-anywhere.herokuapp.com/';
+
+    var service = new google.maps.places.PlacesService(document.getElementById('map'));
+    service.nearbySearch({
+        location: {
+            lat: latitude,
+            lng: longitude
+        },
+        radius: 5000,
+        keyword: searchTerm,
+        type: 'restaurant'
+    }, function(response) {
+        callback(response);
+    });
+    
+    //var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}&categories=food`;
+    //var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.67684,-88.19741&radius=5000&type=restaurant&keyword=mcdonalds&key=AIzaSyDv7JkrSp-QFXIMUVnudICV6XWKLD5a8AY';
+    //var proxyurl = 'proxy.php?csurl=';
 
     // Note: Proxy must be used to avoid browser blocking response from api due to CORS
 
-    $.ajax({
-        url: proxyurl + url,
+    /*$.ajax({
+        url: url,
+        method: 'GET',
         headers: {
-            'Authorization' : 'Bearer tEig16TbTXlaUMjhaAWyccBhMt1-QnbyyFqguXFG_bA_AvQbDl9NB7K8MYrsGVihpBk5Funwyqa5WYtfIkUW7t6utrANeBhZQEBh-ndbOKbEZkLEfCixtoq0iF15XHYx'
+            'Authorization' : 'Bearer tEig16TbTXlaUMjhaAWyccBhMt1-QnbyyFqguXFG_bA_AvQbDl9NB7K8MYrsGVihpBk5Funwyqa5WYtfIkUW7t6utrANeBhZQEBh-ndbOKbEZkLEfCixtoq0iF15XHYx',
         },
-        type: 'GET',
-        dataType: 'json',
         success: function(response) {
             callback(response);
+        },
+        error: function(e) {
+            console.log(e);
         }
-     });
+     });*/
 }
 
 function displaySearchResults(businesses)
