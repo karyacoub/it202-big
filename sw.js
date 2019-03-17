@@ -25,6 +25,13 @@ self.addEventListener('install', e => {
       return cache.addAll([
         `./`,
         `./index.html`,
+        `./screens/search.html`,
+        `./screens/restaurant-info.html`,
+        `./screens/restaurant-reviews.html`,
+        `./screens/restaurant-list.html`,
+        `./screens/recently-viewed.html`,
+        `./screens/map.html`,
+        `./screens/favorited.html`,
       ])
       .then(() => self.skipWaiting());
     })
