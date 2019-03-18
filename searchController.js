@@ -57,7 +57,19 @@ function searchRestaurants(searchTerm, coordinates, callback)
     var latitude = coordinates.latitude;
     var longitude = coordinates.longitude;
 
-    var service = new google.maps.places.PlacesService(document.getElementById('map'));
+    var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}`;
+    var proxyurl = 'https://cors-anywhere.herokuapp.com/';
+
+    $.ajax({
+        url: proxyurl + url,
+        headers: {
+            'Authorization' : 'Bearer tEig16TbTXlaUMjhaAWyccBhMt1-QnbyyFqguXFG_bA_AvQbDl9NB7K8MYrsGVihpBk5Funwyqa5WYtfIkUW7t6utrANeBhZQEBh-ndbOKbEZkLEfCixtoq0iF15XHYx',
+            //'Origin' : 'localhost'
+        },
+        success: function(results) { callback(results.businesses) }
+    });
+
+    /*var service = new google.maps.places.PlacesService(document.getElementById('map'));
     service.nearbySearch({
         location: {
             lat: latitude,
@@ -68,7 +80,7 @@ function searchRestaurants(searchTerm, coordinates, callback)
         type: 'restaurant'
     }, function(response) {
         callback(response);
-    });
+    });*/
 }
 
 function displaySearchResults(businesses)
@@ -97,16 +109,20 @@ function displaySearchResults(businesses)
        // set card's information
        card.find('#restaurant-name').text(business.name);
 
-       card.find('#restaurant-address').text(business.vicinity);
+       var address = business.location.address1 + ' ' 
+                   + business.location.address2 + ', ' 
+                   + business.location.city + ', '
+                   + business.location.state;
+       card.find('#restaurant-address').text(address);
 
-       if(business.photos !== undefined)
+       if(business.image_url !== undefined)
        {
-           card.find('.cropped-image').attr('src', business.photos[0].getUrl());
+           card.find('.cropped-image').attr('src', business.image_url);
        }
 
-       if(business.opening_hours !== undefined)
+       if(business.is_closed !== undefined)
        {
-           var isOpen = business.opening_hours.open_now ? 'Open' : 'Closed';
+           var isOpen = business.is_closed ? 'Closed' : 'Open';
            card.find('#is-open').text(isOpen);
        }
 
