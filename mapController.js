@@ -1,8 +1,15 @@
 var map;
 
 $(document).ready(function() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
+    getLocation(function(coordiantes) {
+        initMap(coordiantes);
     });
 });
+
+function initMap(center)
+{
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: center.latitude, lng: center.longitude},
+        zoom: 12
+    });
+}

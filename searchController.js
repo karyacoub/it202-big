@@ -12,6 +12,9 @@ $(document).ready(function() {
                     loadScreen('restaurant-list', function() { 
                         // add returned restaurants list to restaurant-list page
                         displaySearchResults(businesses); 
+
+                        // add markers to map page
+                        displaySearchMarkers(businesses);
                     });
                 });
             });
@@ -68,19 +71,6 @@ function searchRestaurants(searchTerm, coordinates, callback)
         },
         success: function(results) { callback(results.businesses) }
     });
-
-    /*var service = new google.maps.places.PlacesService(document.getElementById('map'));
-    service.nearbySearch({
-        location: {
-            lat: latitude,
-            lng: longitude
-        },
-        radius: 10000,
-        keyword: searchTerm,
-        type: 'restaurant'
-    }, function(response) {
-        callback(response);
-    });*/
 }
 
 function displaySearchResults(businesses)
@@ -129,6 +119,11 @@ function displaySearchResults(businesses)
        // append card to restaurant list
        $('#restaurant-list').append(card);
     });
+}
+
+function displaySearchMarkers(businesses)
+{
+    
 }
 
 function displayNoResults()
