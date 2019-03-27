@@ -87,8 +87,6 @@ function displaySearchResults(businesses)
        $('#no-results-div').addClass('hidden');
    }
 
-   //console.log(businesses[0]);
-
    businesses.forEach(function(business) {
        // clone card mdc div
        var card = cardTemplate.clone();
@@ -101,10 +99,12 @@ function displaySearchResults(businesses)
 
        card.find('#restaurant-name').text(business.name);
        
-       var address = business.location.address1 + ' ' 
-                   + business.location.address2 + ', ' 
-                   + business.location.city + ', '
-                   + business.location.state;
+       var address1 = business.location.address1;
+       var address2 = business.location.address2 ? ' ' + business.location.address2 : ""; 
+       var city = business.location.city;
+       var state = business.location.state;
+       var address = address1 + address2 + ', ' + city + ', ' + state;
+       
        card.find('#restaurant-address').text(address);
 
        if(business.image_url !== undefined)
