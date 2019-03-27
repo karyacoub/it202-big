@@ -1,7 +1,7 @@
 var map;
 
 $(document).ready(function() {
-    getLocation(function(coordiantes) {
+    getLocation(function(coordiantes) {  
         initMap(coordiantes);
     });
 });

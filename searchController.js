@@ -12,9 +12,6 @@ $(document).ready(function() {
                     loadScreen('restaurant-list', function() { 
                         // add returned restaurants list to restaurant-list page
                         displaySearchResults(businesses); 
-
-                        // add markers to map page
-                        displaySearchMarkers(businesses);
                     });
                 });
             });
@@ -92,13 +89,20 @@ function displaySearchResults(businesses)
        $('#no-results-div').addClass('hidden');
    }
 
+   //console.log(businesses[0]);
+
    businesses.forEach(function(business) {
        // clone card mdc div
        var card = cardTemplate.clone();
        
        // set card's information
-       card.find('#restaurant-name').text(business.name);
+       card.attr('restaurant-id', business.id);
 
+       card.attr('lat', business.coordinates.latitude);
+       card.attr('lng', business.coordinates.longitude);
+
+       card.find('#restaurant-name').text(business.name);
+       
        var address = business.location.address1 + ' ' 
                    + business.location.address2 + ', ' 
                    + business.location.city + ', '
@@ -119,11 +123,6 @@ function displaySearchResults(businesses)
        // append card to restaurant list
        $('#restaurant-list').append(card);
     });
-}
-
-function displaySearchMarkers(businesses)
-{
-    
 }
 
 function displayNoResults()
