@@ -35,7 +35,7 @@ function getLocation(callback)
     {
         // prompt user for location
         navigator.geolocation.getCurrentPosition(function(position) {
-            var coordinates = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+            var coordinates = { lat: position.coords.latitude, lng: position.coords.longitude };
             callback(coordinates);
         },
         function(error) {
@@ -52,10 +52,8 @@ function getLocation(callback)
 
 function searchRestaurants(searchTerm, coordinates, callback)
 {
-    // https://developers.google.com/maps/documentation/javascript/places
-
-    var latitude = coordinates.latitude;
-    var longitude = coordinates.longitude;
+    var latitude = coordinates.lat;
+    var longitude = coordinates.lng;
 
     var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}`;
     var proxyurl = 'https://cors-anywhere.herokuapp.com/';

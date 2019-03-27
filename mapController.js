@@ -1,15 +1,31 @@
 var map;
 
-$(document).ready(function() {
-    getLocation(function(coordiantes) {  
-        initMap(coordiantes);
-    });
-});
+/*$(document).ready(function() {
+    if(!map || isMapMarked)
+    {
+        getLocation(function(coordiantes) {  
+            initMap(coordiantes);
+        });
+    }
+});*/
 
-function initMap(center)
+function initMap(center, marker)
 {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: center.latitude, lng: center.longitude},
-        zoom: 12
-    });
+    if(marker)
+    {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: marker.position,
+            zoom: 12
+        });
+    
+        marker.setMap(map);
+    }
+    else
+    {
+        console.log('test');
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: center.lat, lng: center.lng},
+            zoom: 12
+        });
+    }
 }

@@ -4,9 +4,11 @@ $(document).ready(function() {
     $('#restaurant-list-content').on('click', '.mdc-card', function() {
         var restaurantCard = $(this);
 
-        var marker = generateMarker(restaurantCard);
-
-        
+        loadScreen('map', function() {
+            var marker = generateMarker(restaurantCard);
+            
+            initMap(marker.position, marker);
+        });
     });
 });
 
