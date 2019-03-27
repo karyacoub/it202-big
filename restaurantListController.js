@@ -7,23 +7,25 @@ $(document).ready(function() {
         loadScreen('map', function() {
             $('#no-results-div').addClass('hidden');
 
-            var marker = generateMarker(restaurantCard);
+            var latitude = parseFloat(restaurantCard.attr('lat'));
+            var longitude = parseFloat(restaurantCard.attr('lng'));
+            var name = restaurantCard.find('#restaurant-name').text();
+
+            var coordinates = { lat: latitude, lng: longitude };
+
+            var marker = generateMarker(name, coordinates);
             
-            initMap(marker.position);
+            initMap(coordinates);
 
             setMarker(marker);
         });
     });
 });
 
-function generateMarker(restaurantCard)
+function generateMarker(name, coordinates)
 {
-    var latitude = parseInt(restaurantCard.attr('lat'));
-    var longitude = parseInt(restaurantCard.attr('lng'));
-    var name = restaurantCard.find('#restaurant-name').text();
-
     var marker = new google.maps.Marker({
-        position: {lat: latitude, lng: longitude},
+        position: { lat: coordinates.lat, lng: coordinates.lng },
         title: name
       });
 
