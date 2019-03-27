@@ -5,9 +5,13 @@ $(document).ready(function() {
         var restaurantCard = $(this);
 
         loadScreen('map', function() {
+            $('#no-results-div').addClass('hidden');
+
             var marker = generateMarker(restaurantCard);
             
-            initMap(marker.position, marker);
+            initMap(marker.position);
+
+            setMarker(marker);
         });
     });
 });
