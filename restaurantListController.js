@@ -11,6 +11,8 @@ $(document).ready(function() {
             var latitude = parseFloat(restaurantCard.attr('lat'));
             var longitude = parseFloat(restaurantCard.attr('lng'));
             var name = restaurantCard.find('#restaurant-name').text();
+            var address = restaurantCard.find('#restaurant-address').text();
+            var isOpen = restaurantCard.find('#is-open').text();
 
             var coordinates = { lat: latitude, lng: longitude };
 
@@ -20,7 +22,7 @@ $(document).ready(function() {
 
             setMarker(marker);
 
-            setInfowindow();
+            setInfowindow(name, address, isOpen);
         });
     });
 
@@ -41,4 +43,9 @@ function generateMarker(name, coordinates)
     });
 
     return marker;
+}
+
+function getFullInfo(restaurantID, callback)
+{
+    
 }

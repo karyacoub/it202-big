@@ -22,9 +22,18 @@ function setMarker(marker)
     currentMarker.setMap(map);
 }
 
-function setInfowindow()
+function setInfowindow(name, address, isOpen)
 {
-    var contentString = '';
+    var contentString = '<div class="h-centered">' +
+                            '<h2>' + name + '</h2>' +
+                            '<h3>' + address + '</h3>' +
+                            '<div>' + isOpen + '</div>' +
+                            '<div>' + 
+                                '<button class="mdc-button mdc-card__action mdc-card__action--button">' + 
+                                    'More Info' + 
+                                '</button>' +
+                            '</div>' +
+                        '</div>';
 
     var infowindow = new google.maps.InfoWindow({
         content: contentString
