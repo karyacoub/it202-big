@@ -1,6 +1,5 @@
 var navItems = [
     {"label": "Results", "screen": "restaurant-list", "icon": "list"},
-    {"label": "Map", "screen": "map", "icon": "map"},
 ];
 
 $(document).ready(function () {
