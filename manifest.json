@@ -1,6 +1,6 @@
 {
-    "name": "Restaurant Reviews App",
-    "short_name": "REstaurant Reviews",
+    "name": "Find-A-Restaurant",
+    "short_name": "Find-A-Restaurant",
     "icons": [],
     "start_url": "./index.html",
     "scope": "./",
