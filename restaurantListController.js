@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
-    // add click event listener on list items
-    $('#restaurant-list-content').on('click', '.mdc-card', function() {
-        var restaurantCard = $(this);
+    // open map if map button is clicked
+    $('#restaurant-list-content').on('click', '#open-map', function() {
+        // retrieve the parent mdc card
+        var restaurantCard = $(this).parent().parent().parent();
 
         loadScreen('map', function() {
             $('#no-results-div').addClass('hidden');
@@ -21,6 +22,14 @@ $(document).ready(function() {
 
             setInfowindow();
         });
+    });
+
+    // open info page if more info button is clicked
+    $('#restaurant-list-content').on('click', '#more-info', function() {
+        // retrieve the parent mdc card
+        var restaurantCard = $(this).parent().parent().parent();
+
+        console.log(restaurantCard);
     });
 });
 
