@@ -1,5 +1,6 @@
 var map;
 var currentMarker;
+var isInfowindowOpen = false;
 
 function initMap(coordinates)
 {
@@ -17,5 +18,28 @@ function setMarker(marker)
     }
     
     currentMarker = marker;
+
     currentMarker.setMap(map);
+}
+
+function setInfowindow()
+{
+    var contentString = '';
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    currentMarker.addListener('click', function() {
+        if(!isInfowindowOpen)
+        {
+            infowindow.open(map, currentMarker);
+            isInfowindowOpen = true;
+        }
+        else
+        {
+            infowindow.close();
+            isInfowindowOpen = false;
+        }
+    });
 }

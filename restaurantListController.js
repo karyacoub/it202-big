@@ -18,6 +18,8 @@ $(document).ready(function() {
             initMap(coordinates);
 
             setMarker(marker);
+
+            setInfowindow();
         });
     });
 });
@@ -27,7 +29,7 @@ function generateMarker(name, coordinates)
     var marker = new google.maps.Marker({
         position: { lat: coordinates.lat, lng: coordinates.lng },
         title: name
-      });
+    });
 
     return marker;
 }

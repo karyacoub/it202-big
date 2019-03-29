@@ -100,7 +100,7 @@ function displaySearchResults(businesses)
        card.find('#restaurant-name').text(business.name);
        
        var address1 = business.location.address1;
-       var address2 = business.location.address2 ? ' ' + business.location.address2 : ""; 
+       var address2 = business.location.address2 ? ' ' + business.location.address2 : ''; 
        var city = business.location.city;
        var state = business.location.state;
        var address = address1 + address2 + ', ' + city + ', ' + state;
