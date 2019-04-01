@@ -19,7 +19,6 @@ function openMap()
         var longitude = parseFloat(restaurantCard.attr('lng'));
         var name = restaurantCard.find('#restaurant-name').text();
         var address = restaurantCard.find('#restaurant-address').text();
-        var isOpen = restaurantCard.find('#is-open').text();
 
         var coordinates = { lat: latitude, lng: longitude };
 
@@ -29,7 +28,7 @@ function openMap()
 
         setMarker(marker);
 
-        setInfowindow(name, address, isOpen);
+        setInfowindow(name, address);
     });
 }
 

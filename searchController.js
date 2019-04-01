@@ -112,12 +112,6 @@ function displaySearchResults(businesses)
            card.find('.cropped-image').attr('src', business.image_url);
        }
 
-       if(business.is_closed !== undefined)
-       {
-           var isOpen = business.is_closed ? 'Closed' : 'Open';
-           card.find('#is-open').text(isOpen);
-       }
-
        // append card to restaurant list
        $('#restaurant-list').append(card);
     });

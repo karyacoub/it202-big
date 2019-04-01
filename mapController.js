@@ -22,12 +22,11 @@ function setMarker(marker)
     currentMarker.setMap(map);
 }
 
-function setInfowindow(name, address, isOpen)
+function setInfowindow(name, address)
 {
     var contentString = '<div class="h-centered">' +
                             '<h2>' + name + '</h2>' +
                             '<h3>' + address + '</h3>' +
-                            '<div>' + isOpen + '</div>' +
                             '<div>' + 
                                 '<button onClick="moreInfo()" class="mdc-button mdc-card__action mdc-card__action--button">' + 
                                     'More Info' + 
