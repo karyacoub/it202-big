@@ -65,7 +65,8 @@ h1.description {
 
 .align-with-label {
     display: inline; 
-    vertical-align: 28%
+    vertical-align: 28%;
+    margin: 0px 5px 0px 5px
 }
 
 .mdc-card {
