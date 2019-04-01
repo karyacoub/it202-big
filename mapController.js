@@ -29,7 +29,7 @@ function setInfowindow(name, address, isOpen)
                             '<h3>' + address + '</h3>' +
                             '<div>' + isOpen + '</div>' +
                             '<div>' + 
-                                '<button class="mdc-button mdc-card__action mdc-card__action--button">' + 
+                                '<button onClick="moreInfo()" class="mdc-button mdc-card__action mdc-card__action--button">' + 
                                     'More Info' + 
                                 '</button>' +
                             '</div>' +

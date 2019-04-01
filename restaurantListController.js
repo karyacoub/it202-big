@@ -1,39 +1,42 @@
 $(document).ready(function() {
 
     // open map if map button is clicked
-    $('#restaurant-list-content').on('click', '#open-map', function() {
-        // retrieve the parent mdc card
-        var restaurantCard = $(this).parent().parent().parent();
-
-        loadScreen('map', function() {
-            $('#no-results-div').addClass('hidden');
-
-            var latitude = parseFloat(restaurantCard.attr('lat'));
-            var longitude = parseFloat(restaurantCard.attr('lng'));
-            var name = restaurantCard.find('#restaurant-name').text();
-            var address = restaurantCard.find('#restaurant-address').text();
-            var isOpen = restaurantCard.find('#is-open').text();
-
-            var coordinates = { lat: latitude, lng: longitude };
-
-            var marker = generateMarker(name, coordinates);
-            
-            initMap(coordinates);
-
-            setMarker(marker);
-
-            setInfowindow(name, address, isOpen);
-        });
-    });
+    $('#restaurant-list-content').on('click', '#open-map', openMap);
 
     // open info page if more info button is clicked
-    $('#restaurant-list-content').on('click', '#more-info', function() {
-        // retrieve the parent mdc card
-        var restaurantCard = $(this).parent().parent().parent();
-
-        console.log(restaurantCard);
-    });
+    $('#restaurant-list-content').on('click', '#more-info', moreInfo);
 });
+
+function openMap()
+{
+    // retrieve the parent mdc card
+    var restaurantCard = $(this).parent().parent().parent();
+
+    loadScreen('map', function() {
+        $('#no-results-div').addClass('hidden');
+
+        var latitude = parseFloat(restaurantCard.attr('lat'));
+        var longitude = parseFloat(restaurantCard.attr('lng'));
+        var name = restaurantCard.find('#restaurant-name').text();
+        var address = restaurantCard.find('#restaurant-address').text();
+        var isOpen = restaurantCard.find('#is-open').text();
+
+        var coordinates = { lat: latitude, lng: longitude };
+
+        var marker = generateMarker(name, coordinates);
+        
+        initMap(coordinates);
+
+        setMarker(marker);
+
+        setInfowindow(name, address, isOpen);
+    });
+}
+
+function moreInfo()
+{
+    console.log("More info");
+}
 
 function generateMarker(name, coordinates)
 {
