@@ -27,7 +27,6 @@ self.addEventListener('install', e => {
         `./index.html`,
         `./screens/search.html`,
         `./screens/restaurant-info.html`,
-        `./screens/restaurant-reviews.html`,
         `./screens/restaurant-list.html`,
         `./screens/recently-viewed.html`,
         `./screens/map.html`,
