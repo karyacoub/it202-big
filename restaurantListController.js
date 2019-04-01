@@ -36,6 +36,24 @@ function openMap()
 function moreInfo()
 {
     console.log("More info");
+
+    // name
+    // photos[] (image list)
+    // url (to view all reviews)
+    // display_phone
+    // review count
+    // categories[].title (chips)
+    // rating
+    // location.display_address[]
+    // price
+    // hours.open[]
+    //  hours.open[].is_overnight
+    //  hours.open[].start (military time)
+    //  hours.opn[].end (military time)
+    //  hours.open[].day (0 is Monday, 6 is Sunday)
+    // hours.hours_type (e.g. regular, holiday, etc)
+    // hours.is_open_now
+
 }
 
 function generateMarker(name, coordinates)
