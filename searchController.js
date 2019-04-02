@@ -29,6 +29,11 @@ function getSearchTerm()
     return $('#search-text-field').val();
 }
 
+function getIsOpen()
+{
+    return $('#open_now')[0].checked;
+}
+
 function getLocation(callback)
 {
     if ('geolocation' in navigator) 
@@ -54,8 +59,9 @@ function searchRestaurants(searchTerm, coordinates, callback)
 {
     var latitude = coordinates.lat;
     var longitude = coordinates.lng;
+    var isOpen = getIsOpen();
 
-    var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}`;
+    var url = `https://api.yelp.com/v3/businesses/search?latitude=${latitude}&longitude=${longitude}&term=${searchTerm}&open_now=${isOpen}`;
     var proxyurl = 'https://cors-anywhere.herokuapp.com/';
 
     $.ajax({
