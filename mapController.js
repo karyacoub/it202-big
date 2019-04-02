@@ -22,21 +22,25 @@ function setMarker(marker)
     currentMarker.setMap(map);
 }
 
-function setInfowindow(name, address)
+function setInfowindow(name, id, address)
 {
-    var contentString = '<div class="h-centered">' +
+    var contentString = $('<div restaurant-id="' + id + '" class="h-centered">' +
                             '<h2>' + name + '</h2>' +
                             '<h3>' + address + '</h3>' +
                             '<div>' + 
-                                '<button onClick="moreInfo()" class="mdc-button mdc-card__action mdc-card__action--button">' + 
+                                '<button id="more-info-infowindow" class="mdc-button mdc-card__action mdc-card__action--button">' + 
                                     'More Info' + 
                                 '</button>' +
                             '</div>' +
-                        '</div>';
+                        '</div>');
 
     var infowindow = new google.maps.InfoWindow({
-        content: contentString
+        content: contentString[0]
     });
+
+    // add more info button click event listener
+    var button = contentString.find('button.mdc-button')[0];
+    google.maps.event.addDomListener(button, "click", moreInfo);
 
     currentMarker.addListener('click', function() {
         if(!isInfowindowOpen)

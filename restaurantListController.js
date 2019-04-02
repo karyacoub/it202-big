@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#restaurant-list-content').on('click', '#open-map', openMap);
 
     // open info page if more info button is clicked
-    $('#restaurant-list-content').on('click', '#more-info', moreInfo);
+    $('#restaurant-list-content').on('click', '#more-info-card', moreInfo);
 });
 
 function openMap()
@@ -23,19 +23,31 @@ function openMap()
 
         var coordinates = { lat: latitude, lng: longitude };
 
-        var marker = generateMarker(name, id, coordinates);
+        var marker = generateMarker(name, coordinates);
         
         initMap(coordinates);
 
         setMarker(marker);
 
-        setInfowindow(name, address);
+        setInfowindow(name, id, address);
     });
 }
 
 function moreInfo()
 {
-    console.log("More info");
+    var target = $(this);
+
+    // check if caller is the mdc card or the marker
+    if(target.is('button#more-info-infowindow'))
+    {
+        
+    }
+    else if(target.is('button#more-info-card'))
+    {
+        
+    }
+    // retrieve the parent mdc card
+    //var restaurantCard = $(this).parent().parent().parent();
 
     // name
     // photos[] (image list)
@@ -56,12 +68,11 @@ function moreInfo()
 
 }
 
-function generateMarker(name, restaurantID, coordinates)
+function generateMarker(name, coordinates)
 {
     var marker = new google.maps.Marker({
         position: { lat: coordinates.lat, lng: coordinates.lng },
-        title: name,
-        id: restaurantID
+        title: name
     });
 
     return marker;
