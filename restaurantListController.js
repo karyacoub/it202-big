@@ -19,10 +19,11 @@ function openMap()
         var longitude = parseFloat(restaurantCard.attr('lng'));
         var name = restaurantCard.find('#restaurant-name').text();
         var address = restaurantCard.find('#restaurant-address').text();
+        var id = restaurantCard.attr('restaurant-id');
 
         var coordinates = { lat: latitude, lng: longitude };
 
-        var marker = generateMarker(name, coordinates);
+        var marker = generateMarker(name, id, coordinates);
         
         initMap(coordinates);
 
@@ -55,11 +56,12 @@ function moreInfo()
 
 }
 
-function generateMarker(name, coordinates)
+function generateMarker(name, restaurantID, coordinates)
 {
     var marker = new google.maps.Marker({
         position: { lat: coordinates.lat, lng: coordinates.lng },
-        title: name
+        title: name,
+        id: restaurantID
     });
 
     return marker;
