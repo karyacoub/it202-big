@@ -16,7 +16,7 @@
 
 version = '1.1';
 
-let cacheName = 'restaurantreviews_' + version;
+let cacheName = 'findrestaurant_' + version;
 
 self.addEventListener('install', e => {
   let timeStamp = Date.now();
