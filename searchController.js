@@ -68,7 +68,6 @@ function searchRestaurants(searchTerm, coordinates, callback)
         url: proxyurl + url,
         headers: {
             'Authorization' : 'Bearer tEig16TbTXlaUMjhaAWyccBhMt1-QnbyyFqguXFG_bA_AvQbDl9NB7K8MYrsGVihpBk5Funwyqa5WYtfIkUW7t6utrANeBhZQEBh-ndbOKbEZkLEfCixtoq0iF15XHYx',
-            //'Origin' : 'localhost'
         },
         success: function(results) { callback(results.businesses) }
     });
