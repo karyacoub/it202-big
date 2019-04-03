@@ -22,9 +22,9 @@ function setMarker(marker)
     currentMarker.setMap(map);
 }
 
-function setInfowindow(name, id, address)
+function setInfowindow(name, id, lat, lng, address)
 {
-    var contentString = $('<div restaurant-id="' + id + '" class="h-centered">' +
+    var contentString = $('<div restaurant-id="' + id + '" lat="' + lat + '" lng="' + lng + '" class="h-centered">' +
                             '<h2>' + name + '</h2>' +
                             '<h3>' + address + '</h3>' +
                             '<div>' + 

@@ -29,7 +29,7 @@ function openMap()
 
         setMarker(marker);
 
-        setInfowindow(name, id, address);
+        setInfowindow(name, id, latitude, longitude, address);
     });
 }
 
@@ -49,12 +49,15 @@ function moreInfo()
         restaurant = $(this).parent().parent().parent();
     }
 
-    var restaurantID = restaurant.attr('restaurant-id');
+    /*var restaurantID = restaurant.attr('restaurant-id');
 
     // make api call to get restaurant info
-    getFullInfo(restaurantID, function(restaurantInfo) {
-        console.log(restaurantInfo);
-    })
+    getYelpInfo(restaurantID, function(restaurantInfo) {
+        // use the address od selected restaurant as the zomato search key
+        var zomatoSearchKey = restaurantInfo.location.address1 + ' ' + restaurantInfo.location.zip_code;
+
+        getZomatoInfo();
+    });*/
 
     // name
     // photos[] (image list)
@@ -85,7 +88,7 @@ function generateMarker(name, coordinates)
     return marker;
 }
 
-function getFullInfo(restaurantID, callback)
+function getYelpInfo(restaurantID, callback)
 {
     var url = `https://api.yelp.com/v3/businesses/${restaurantID}`;
     var proxyurl = 'https://cors-anywhere.herokuapp.com/';
@@ -97,4 +100,27 @@ function getFullInfo(restaurantID, callback)
         },
         success: function(results) { callback(results) }
     });
+}
+
+function searchZomato()
+{
+    var url = `https://developers.zomato.com/api/v2.1/geocode?`;
+
+    $.ajax({
+        url: proxyurl + url,
+        headers: {
+            'user-key' : 'b2945786c3ef3677531a78c49766d82a',
+        },
+        success: function(results) { callback(results) }
+    });
+}
+
+function getZomatoInfo(address)
+{
+    // use the address of the restaurant of the yelp api to find restaurant in zomato api
+
+
+    // if restaurant not found on zomato, show user that no additional information was found
+
+    // otherwise, run success callback function
 }
