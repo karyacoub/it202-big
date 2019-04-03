@@ -35,19 +35,20 @@ function openMap()
 
 function moreInfo()
 {
-    var target = $(this);
+    var restaurant = $(this);
 
     // check if caller is the mdc card or the marker
-    if(target.is('button#more-info-infowindow'))
+    if(restaurant.is('button#more-info-infowindow'))
     {
-        
+        // retrieve the parent div
+        restaurant = $(this).parent().parent();
     }
-    else if(target.is('button#more-info-card'))
+    else if(restaurant.is('button#more-info-card'))
     {
-        
+        // retrieve the parent mdc card
+        restaurant = $(this).parent().parent().parent();
     }
-    // retrieve the parent mdc card
-    //var restaurantCard = $(this).parent().parent().parent();
+    
 
     // name
     // photos[] (image list)
