@@ -48,7 +48,13 @@ function moreInfo()
         // retrieve the parent mdc card
         restaurant = $(this).parent().parent().parent();
     }
-    
+
+    var restaurantID = restaurant.attr('restaurant-id');
+
+    // make api call to get restaurant info
+    getFullInfo(restaurantID, function(restaurantInfo) {
+        console.log(restaurantInfo);
+    })
 
     // name
     // photos[] (image list)
@@ -81,5 +87,14 @@ function generateMarker(name, coordinates)
 
 function getFullInfo(restaurantID, callback)
 {
-    
+    var url = `https://api.yelp.com/v3/businesses/${restaurantID}`;
+    var proxyurl = 'https://cors-anywhere.herokuapp.com/';
+
+    $.ajax({
+        url: proxyurl + url,
+        headers: {
+            'Authorization' : 'Bearer tEig16TbTXlaUMjhaAWyccBhMt1-QnbyyFqguXFG_bA_AvQbDl9NB7K8MYrsGVihpBk5Funwyqa5WYtfIkUW7t6utrANeBhZQEBh-ndbOKbEZkLEfCixtoq0iF15XHYx',
+        },
+        success: function(results) { callback(results) }
+    });
 }
