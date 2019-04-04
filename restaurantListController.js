@@ -55,10 +55,9 @@ function moreInfo()
 
     // make api call to get restaurant info
     getYelpInfo(restaurantID, function(restaurantInfo) {
-        // use the address od selected restaurant as the zomato search key
-        var searchAddress = restaurantInfo.location.address1 + ' ' + restaurantInfo.location.zip_code;
+        // use the restaurant coordinates as search key for zomato api call
 
-        getZomatoInfo(latitude, longitude, searchAddress);
+        getZomatoInfo(latitude, longitude);
     });
 
     // name
@@ -117,14 +116,30 @@ function searchZomato(lat, lng, callback)
     });
 }
 
-function getZomatoInfo(lat, lng, address)
+function getZomatoInfo(lat, lng)
 {
     // use the address of the restaurant of the yelp api to find restaurant in zomato api
     searchZomato(lat, lng, function(results) {
-        console.log(results);
+        // determine if returned array contains restaurant
+        var nearbyRestaurants = results.nearby_restaurants;
+
+        // the coordinates from the yelp api and the coordinates from the zomato api are the same up to 2 decimal places,
+        // so reduce each coordinate string to 2 decimal places for comparison with zomato coordinates
+        lat = lat[0] === '-' ? lat.substring(0, 6) : lat.substring(0, 5);
+        lng = lng[0] === '-' ? lng.substring(0, 6) : lng.substring(0, 5);
+
+        var x = nearbyRestaurants.find(function(restaurant) {
+            var zomatoLat = restaurant.restaurant.location.latitude;
+            var zomatoLng = restaurant.restaurant.location.longitude;
+
+            zomatoLat = zomatoLat[0] === '-' ? zomatoLat.substring(0, 6) : zomatoLat.substring(0, 5);
+            zomatoLng = zomatoLng[0] === '-' ? zomatoLng.substring(0, 6) : zomatoLng.substring(0, 5);
+
+            return lat === zomatoLat && lng === zomatoLng;
+        });
+
+        console.log(x);
+
+        // otherwise, run success callback function
     });
-
-    // if restaurant not found on zomato, show user that no additional information was found
-
-    // otherwise, run success callback function
 }
