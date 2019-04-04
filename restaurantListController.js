@@ -54,12 +54,16 @@ function moreInfo()
     var longitude = restaurant.attr('lng');
 
     // make api call to get restaurant info
-    getYelpInfo(restaurantID, function(restaurantInfo) {
+    getYelpInfo(restaurantID, function(yelpInfo) {
         // use the restaurant coordinates as search key for zomato api call
 
-        getZomatoInfo(latitude, longitude);
+        getZomatoInfo(latitude, longitude, function(zomatoInfo) {
+            console.log(yelpInfo);
+            console.log(zomatoInfo);
+        });
     });
 
+    // YELP: 
     // name
     // photos[] (image list)
     // url (to view all reviews)
@@ -77,6 +81,13 @@ function moreInfo()
     // hours.hours_type (e.g. regular, holiday, etc)
     // hours.is_open_now
 
+    // ZOMATO:
+    // cuisines
+    // average_cost_for_two
+    // photos_url
+    // menu_url
+    // has_online_delivery
+    // is_table_reservation_supported
 }
 
 function generateMarker(name, coordinates)
@@ -131,7 +142,7 @@ function zomatoMoreInfo(id, callback)
     });
 }
 
-function getDailyMenu(lat, lng)
+function getZomatoInfo(lat, lng, callback)
 {
     // use the address of the restaurant of the yelp api to find restaurant in zomato api
     zomatoLocationSearch(lat, lng, function(results) {
@@ -153,18 +164,16 @@ function getDailyMenu(lat, lng)
             return lat === zomatoLat && lng === zomatoLng;
         });
 
-        // if restaurant is found, get more info on the restaurant
+        // if restaurant is found, display more info on the restaurant
         if (foundRestaurant !== undefined)
         {
-            zomatoMoreInfo(foundRestaurant.restaurant.id, function(results) {
-                console.log(results);
-                // cuisines
-                // average_cost_for_two
-                // photos_url
-                // menu_url
-                // has_online_delivery
-                // is_table_reservation_supported
+            zomatoMoreInfo(foundRestaurant.restaurant.id, function(zomatoInfo) {
+                callback(zomatoInfo);
             });
+        }
+        else
+        {
+            callback({});
         }
     });
 }
