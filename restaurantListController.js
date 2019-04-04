@@ -158,6 +158,12 @@ function getDailyMenu(lat, lng)
         {
             zomatoMoreInfo(foundRestaurant.restaurant.id, function(results) {
                 console.log(results);
+                // cuisines
+                // average_cost_for_two
+                // photos_url
+                // menu_url
+                // has_online_delivery
+                // is_table_reservation_supported
             });
         }
     });
