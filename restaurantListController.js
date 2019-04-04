@@ -103,12 +103,13 @@ function getYelpInfo(restaurantID, callback)
     });
 }
 
-function searchZomato(lat, lng, callback)
+function zomatoLocationSearch(lat, lng, callback)
 {
     var url = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${lng}`;
+    var proxyurl = 'https://cors-anywhere.herokuapp.com/';
 
     $.ajax({
-        url: url,
+        url: proxyurl + url,
         headers: {
             'user-key' : 'b2945786c3ef3677531a78c49766d82a',
         },
@@ -116,10 +117,24 @@ function searchZomato(lat, lng, callback)
     });
 }
 
-function getZomatoInfo(lat, lng)
+function zomatoMoreInfo(id, callback)
+{
+    var url = `https://developers.zomato.com/api/v2.1/restaurant?res_id=${id}`;
+    var proxyurl = 'https://cors-anywhere.herokuapp.com/';
+
+    $.ajax({
+        url: proxyurl + url,
+        headers: {
+            'user-key' : 'b2945786c3ef3677531a78c49766d82a',
+        },
+        success: function(results) { callback(results) }
+    });
+}
+
+function getDailyMenu(lat, lng)
 {
     // use the address of the restaurant of the yelp api to find restaurant in zomato api
-    searchZomato(lat, lng, function(results) {
+    zomatoLocationSearch(lat, lng, function(results) {
         // determine if returned array contains restaurant
         var nearbyRestaurants = results.nearby_restaurants;
 
@@ -128,7 +143,7 @@ function getZomatoInfo(lat, lng)
         lat = lat[0] === '-' ? lat.substring(0, 6) : lat.substring(0, 5);
         lng = lng[0] === '-' ? lng.substring(0, 6) : lng.substring(0, 5);
 
-        var x = nearbyRestaurants.find(function(restaurant) {
+        var foundRestaurant = nearbyRestaurants.find(function(restaurant) {
             var zomatoLat = restaurant.restaurant.location.latitude;
             var zomatoLng = restaurant.restaurant.location.longitude;
 
@@ -138,8 +153,12 @@ function getZomatoInfo(lat, lng)
             return lat === zomatoLat && lng === zomatoLng;
         });
 
-        console.log(x);
-
-        // otherwise, run success callback function
+        // if restaurant is found, get more info on the restaurant
+        if (foundRestaurant !== undefined)
+        {
+            zomatoMoreInfo(foundRestaurant.restaurant.id, function(results) {
+                console.log(results);
+            });
+        }
     });
 }
