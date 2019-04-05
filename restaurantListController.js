@@ -59,23 +59,21 @@ function moreInfo()
 
         getZomatoInfo(latitude, longitude, function(zomatoInfo) {
             loadScreen('restaurant-info', function() {
-                
+
             });
         });
     });
 
     // YELP: 
     // name
-    // photos[] (image list)
-    // url (to view all reviews)
-    // display_phone
-    // review count
-    // categories[].title (chips)
     // rating
+    // photos[] (image list)
+    // display_phone
     // location.display_address[]
+    // categories[].title (chips)
     // price
-    // hours.open[]
-    //  hours.open[].is_overnight
+    // review count
+    // url (to view all reviews)
     //  hours.open[].start (military time)
     //  hours.opn[].end (military time)
     //  hours.open[].day (0 is Monday, 6 is Sunday)
@@ -83,7 +81,6 @@ function moreInfo()
     // hours.is_open_now
 
     // ZOMATO:
-    // cuisines
     // average_cost_for_two
     // photos_url
     // menu_url

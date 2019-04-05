@@ -32,6 +32,10 @@ body {
     height: 100%;
 }
 
+#restaurant-info {
+    padding: 0px 15px 0px 15px
+}
+
 h1.description {
     font-size: 72px;
     line-height: 72px;
@@ -83,4 +87,14 @@ h1.description {
 
 .hidden {
     display: none
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bolder !important
+}
+
+.subtitle {
+    font-size: 24px;
+    opacity: 0.75;
 }
