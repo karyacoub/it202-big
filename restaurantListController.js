@@ -58,8 +58,9 @@ function moreInfo()
         // use the restaurant coordinates as search key for zomato api call
 
         getZomatoInfo(latitude, longitude, function(zomatoInfo) {
-            console.log(yelpInfo);
-            console.log(zomatoInfo);
+            loadScreen('restaurant-info', function() {
+                
+            });
         });
     });
 
