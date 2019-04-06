@@ -54,7 +54,9 @@ function moreInfo()
     var longitude = restaurant.attr('lng');
 
     // make api call to get restaurant info
-    getYelpInfo(restaurantID, function(yelpInfo) {
+    // FOR TESTING PURPOSES
+    loadScreen('restaurant-info');
+    /*getYelpInfo(restaurantID, function(yelpInfo) {
         // use the restaurant coordinates as search key for zomato api call
 
         getZomatoInfo(latitude, longitude, function(zomatoInfo) {
@@ -62,7 +64,7 @@ function moreInfo()
 
             });
         });
-    });
+    });*/
 
     // YELP: 
     // name

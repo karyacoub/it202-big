@@ -33,7 +33,7 @@ body {
 }
 
 #restaurant-info {
-    padding: 0px 15px 0px 15px
+    padding: 15px 15px 0px 15px
 }
 
 h1.description {
@@ -91,10 +91,21 @@ h1.description {
 
 .title {
     font-size: 36px;
-    font-weight: bolder !important
+    font-weight: bolder !important;
+    margin: 0px 15px 0px 0px;
 }
 
 .subtitle {
     font-size: 24px;
     opacity: 0.75;
+}
+
+.inline {
+    display: inline !important;
+}
+
+.vertical-separator {
+    border-left: 1px solid rgb(61, 61, 61);
+    display: inline;
+    margin: 0px 10px 0px 10px;
 }
