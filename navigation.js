@@ -47,7 +47,7 @@ function loadDrawerNavigationElements(navItems)
     $("nav.mdc-list a:eq(0)").addClass("mdc-list-item--activated");
   }
 
-function loadScreen(screenName, callback = function() {})
+function loadScreen(screenName, callback = function() {}, )
 {
     var screenPath = './screens/' + screenName + '.html';
     $('#content').load(screenPath, function()

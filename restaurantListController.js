@@ -54,17 +54,14 @@ function moreInfo()
     var longitude = restaurant.attr('lng');
 
     // make api call to get restaurant info
-    // FOR TESTING PURPOSES
-    loadScreen('restaurant-info');
-    /*getYelpInfo(restaurantID, function(yelpInfo) {
-        // use the restaurant coordinates as search key for zomato api call
-
+    getYelpInfo(restaurantID, function(yelpInfo) {
+        // use coordinates to search for restaurant on zomato
         getZomatoInfo(latitude, longitude, function(zomatoInfo) {
             loadScreen('restaurant-info', function() {
-
+                displayInfo(yelpInfo, zomatoInfo);
             });
         });
-    });*/
+    });
 
     // YELP: 
     // name
@@ -88,6 +85,48 @@ function moreInfo()
     // menu_url
     // has_online_delivery
     // is_table_reservation_supported
+}
+
+function displayInfo(yelpInfo, zomatoInfo)
+{
+    console.log(yelpInfo);
+
+    var name = yelpInfo.name;
+    var isOpen = yelpInfo.hours[0].is_open_now ? 'Open' : 'Closed';
+    var rating = yelpInfo.rating + '/5 ★';
+    var pricing = yelpInfo.price;
+    var numReviews = yelpInfo.review_count;
+    var yelpURL = yelpInfo.url;
+    var address = '';
+    yelpInfo.location.display_address.forEach(function (e) { 
+        address += (e + ' '); 
+    });
+    var phone = yelpInfo.display_phone;
+    var cuisines = yelpInfo.categories;
+    var cuisineChip = $('#cuisine-type').clone();
+    var images = yelpInfo.photos;
+    var imageListImage = $('#yelp-image').clone();
+
+    $('#restaurant-name').text(name);
+    $('#is-open').text(isOpen);
+    $('#rating').text(rating);
+    $('#pricing').text(pricing);
+    $('#number-reviews').children()[0].text = numReviews + ' Reviews';
+    $('#number-reviews').children()[0].href = yelpURL;
+    $('#address').text(address);
+    $('#phone').text(phone);
+    $('#cuisine-type').addClass('hidden');
+    cuisines.forEach(function (e) {
+        var currentChip = cuisineChip.clone();
+        currentChip.children()[0].innerHTML = e.title;
+        $('.mdc-chip-set').append(currentChip);
+    });
+    $('#yelp-image').addClass('hidden');
+    images.forEach(function(e) {
+        var currentImage = imageListImage.clone();
+        currentImage.children().children()[0].src = e;
+        $('#image-list').append(currentImage);
+    });
 }
 
 function generateMarker(name, coordinates)
