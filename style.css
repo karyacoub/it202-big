@@ -92,12 +92,14 @@ h1.description {
 .title {
     font-size: 36px;
     font-weight: bolder !important;
-    margin: 0px 15px 0px 0px;
+    margin: 0px 15px 0px 15px;
 }
+
 
 .subtitle {
     font-size: 24px;
     opacity: 0.75;
+    margin: 0px 15px 0px 15px;
 }
 
 .inline {
@@ -107,5 +109,8 @@ h1.description {
 .vertical-separator {
     border-left: 1px solid rgb(61, 61, 61);
     display: inline;
-    margin: 0px 10px 0px 10px;
+}
+
+.padded {
+    margin: 5px 0px 5px 0px;
 }
