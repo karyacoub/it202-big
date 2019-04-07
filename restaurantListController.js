@@ -106,6 +106,10 @@ function displayInfo(yelpInfo, zomatoInfo)
     var cuisineChip = $('#cuisine-type').clone();
     var images = yelpInfo.photos;
     var imageListImage = $('#yelp-image').clone();
+    var hoursType = yelpInfo.hours[0].hours_type;
+    var hours = yelpInfo.hours[0].open;
+
+    console.log(hoursType);
 
     $('#restaurant-name').text(name);
     $('#is-open').text(isOpen);
@@ -126,6 +130,14 @@ function displayInfo(yelpInfo, zomatoInfo)
         var currentImage = imageListImage.clone();
         currentImage.children().children()[0].src = e;
         $('#image-list').append(currentImage);
+    });
+    $('#hours-type').text(hoursType);
+    $('.open-times').each(function(i, v) {
+        var startTime = hours[i].start;
+        var endTime =hours[i].end;
+        startTime = militaryToStandardTime(startTime);
+        endTime = militaryToStandardTime(endTime);
+        v.innerHTML = startTime + ' - ' + endTime;
     });
 }
 
