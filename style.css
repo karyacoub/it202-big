@@ -40,6 +40,17 @@ body {
     width: 300px;
     height: 300px;
 }
+table {
+    margin: 60px 15px 0px 0px;
+}
+
+tr {
+    margin: 0px 0px 15px 0px;
+}
+
+td {
+    margin: 0px 15px 0px 0px;
+}
 
 h1.description {
     font-size: 72px;
@@ -118,4 +129,18 @@ h1.description {
 
 .padded {
     margin: 5px 0px 5px 0px;
+}
+
+.left-right-container {
+    width: 100%;
+    margin: auto;
+}
+
+.left {
+    width: 75%;
+    float: left;
+}
+
+.right {
+    margin-left: 25%;
 }

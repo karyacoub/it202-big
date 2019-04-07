@@ -38,14 +38,54 @@
 
     <hr />
 
+    <!--Side-by-side divs containing yelp images and opening times-->
+    <section class="left-right-container">
     <!--List of availiable images from Yelp-->
-    <div class="padding">
-        <ul id="image-list" class="mdc-image-list">
-            <li class="mdc-image-list__item">
-                <div id="yelp-image" class="mdc-image-list__image-aspect-container">
-                    <img class="mdc-image-list__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png">
-                </div>
-            </li>
-        </ul>
-    </div>
+        <div class="padding left">
+            <ul id="image-list" class="mdc-image-list">
+                <li class="mdc-image-list__item">
+                    <div id="yelp-image" class="mdc-image-list__image-aspect-container">
+                        <img class="mdc-image-list__image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    
+    <!--Opening Hours-->
+        <div class="padding right">
+            <table>
+                <tr>
+                    <td><h3 class="subtitle">Hours</h3></td>
+                </tr>
+                <tr>
+                    <td >Monday</td>
+                    <td id="open-times">XX:XX - YY:YY</td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td id="open-times">XX:XX - YY:YY</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td id="open-times">XX:XX - YY:YY</td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td id="open-times">XX:XX - YY:YY</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td id="open-times">XX:XX - YY:YY</td>
+                </tr>
+                <tr>
+                    <td>Saturday</td>
+                    <td id="open-times">XX:XX - YY:YY</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td id="open-times">XX:XX - YY:YY</td>
+                </tr>
+            </table>
+        </div>
+    </section>
 </div>
