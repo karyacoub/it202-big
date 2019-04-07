@@ -89,8 +89,7 @@ function moreInfo()
 
 function displayInfo(yelpInfo, zomatoInfo)
 {
-    console.log(yelpInfo);
-
+    // yelp info should always exist at this point, so no need to check for existence
     var name = yelpInfo.name;
     var isOpen = yelpInfo.hours[0].is_open_now ? 'Open' : 'Closed';
     var rating = yelpInfo.rating + '/5 ★';
@@ -108,8 +107,6 @@ function displayInfo(yelpInfo, zomatoInfo)
     var imageListImage = $('#yelp-image').clone();
     var hoursType = yelpInfo.hours[0].hours_type;
     var hours = yelpInfo.hours[0].open;
-
-    console.log(hoursType);
 
     $('#restaurant-name').text(name);
     $('#is-open').text(isOpen);
@@ -139,6 +136,18 @@ function displayInfo(yelpInfo, zomatoInfo)
         endTime = militaryToStandardTime(endTime);
         v.innerHTML = startTime + ' - ' + endTime;
     });
+
+    // check if zomato info is empty (i.e. zomato api found an entry for the selected restaurant)
+    if(Object.entries(zomatoInfo).length !== 0 || zomatoInfo.constructor !== Object)
+    {  
+        console.log(zomatoInfo);
+        var avgCostForTwo = '$' + zomatoInfo.average_cost_for_two;
+        var menuLink = zomatoInfo.menu_url;
+
+        $('#avg-cost-for-two').text(avgCostForTwo);
+        $('#menu').children()[0].href = menuLink;
+        $('#menu').children()[0].innerHTML = 'Menu @ Zomato';
+    }
 }
 
 function generateMarker(name, coordinates)
