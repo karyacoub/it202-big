@@ -140,13 +140,16 @@ function displayInfo(yelpInfo, zomatoInfo)
     // check if zomato info is empty (i.e. zomato api found an entry for the selected restaurant)
     if(Object.entries(zomatoInfo).length !== 0 || zomatoInfo.constructor !== Object)
     {  
-        console.log(zomatoInfo);
         var avgCostForTwo = '$' + zomatoInfo.average_cost_for_two;
         var menuLink = zomatoInfo.menu_url;
+        var hasOnlineDelivery = zomatoInfo.has_online_delivery === 1 ? 'Yes' : 'No';
+        var hasTableReservations = zomatoInfo.is_table_reservation_supported === 1 ? 'Yes' : 'No';
 
         $('#avg-cost-for-two').text(avgCostForTwo);
         $('#menu').children()[0].href = menuLink;
         $('#menu').children()[0].innerHTML = 'Menu @ Zomato';
+        $('#has-online-delivery').text(hasOnlineDelivery);
+        $("#has-table-reservations").text(hasTableReservations);
     }
 }
 
