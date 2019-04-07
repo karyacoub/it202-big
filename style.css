@@ -40,8 +40,18 @@ body {
     width: 300px;
     height: 300px;
 }
-table {
+
+#hours-table {
     margin: 60px 15px 0px 0px;
+}
+
+#zomato-table {
+    width: 100vw;
+    margin: 0px;
+}
+
+hr {
+    clear: both;
 }
 
 tr {
