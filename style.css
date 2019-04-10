@@ -24,7 +24,7 @@ body {
 }
 
 #search-button {
-    height: 15%;
+    padding: 18px 0px 38px 0px;
 }
 
 #restaurant-image {
@@ -64,8 +64,8 @@ td {
 }
 
 h1.description {
-    font-size: 72px;
-    line-height: 72px;
+    font-size: 62px;
+    line-height: 62px;
 }
 
 .h-centered {
@@ -76,7 +76,6 @@ h1.description {
 
 .v-centered {
     position: absolute;
-    top: 10vh;
 }
 
 .top-block-wrapper {
@@ -84,14 +83,16 @@ h1.description {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 50vh;
+    height: 40%;
 }
 
 .bottom-block-wrapper {
     display: block;
     overflow: hidden;
     width: 100%;
-    height: 50vh;
+    height: 100%;
+    padding: 50px 0px 50px 0px;
+    margin: 0px 15px 0px 15px;
 }
 
 .align-with-label {
