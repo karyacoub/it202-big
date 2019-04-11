@@ -13,8 +13,6 @@ function openMap()
     var restaurantCard = $(this).parent().parent().parent();
 
     loadScreen('map', function() {
-        $('#no-results-div').addClass('hidden');
-
         var latitude = parseFloat(restaurantCard.attr('lat'));
         var longitude = parseFloat(restaurantCard.attr('lng'));
         var name = restaurantCard.find('#restaurant-name').text();
