@@ -112,6 +112,9 @@ function displaySearchResults(businesses)
        
        card.find('#restaurant-address').text(address);
 
+       // to make opening card from more info page possible
+       card.attr('name', business.name);
+
        if(business.image_url !== undefined)
        {
            card.find('.cropped-image').attr('src', business.image_url);
