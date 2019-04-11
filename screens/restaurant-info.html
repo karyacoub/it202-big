@@ -1,13 +1,13 @@
 <div id="restaurant-info">
     
     <!--Title and open status-->
-    <div class="padded">
+    <div id="title-and-open-status" class="padded">
         <h2 id="restaurant-name" class="title inline">Restaurant Name</h2>
         <h3 id="is-open" class="subtitle inline">Open/Closed</h3>
     </div>
 
     <!--Rating, pricing, and total number of  Yelp reviews-->
-    <div class="padded">
+    <div id="rating-pricing-reviews" class="padded">
         <h3 id="rating" class="subtitle inline">X.X/5 ★</h3>
         <div class="vertical-separator" class="inline"></div>
         <h3 id="pricing" class="subtitle inline">$$$</h3>
@@ -16,18 +16,18 @@
     </div>
 
     <!--Address and map button-->
-    <div class="padded">
+    <div id="address-and-map" class="padded">
         <h3 id="address" class="subtitle inline">123 Street St., City, State</h3>
         <button id="map-button" class="mdc-button mdc-theme--secondary">Map</button>
     </div>
 
     <!--Phone number-->
-    <div class="padded">
+    <div id="phone-number" class="padded">
         <h3 id="phone" class="subtitle inline">(XXX)-XXX-XXXX</h3>
     </div>
 
     <!--Cuisine types-->
-    <div class="mdc-chip-set padded" data-mdc-auto-init="MDCChipSet">
+    <div id="cuisine-types" class="mdc-chip-set padded" data-mdc-auto-init="MDCChipSet">
         <div id="cuisine-type" class="mdc-chip" tabindex="0">
             <div class="mdc-chip__text">Cuisine type</div>
         </div>
@@ -38,7 +38,7 @@
     <!--Side-by-side divs containing yelp images and opening times-->
     <section class="left-right-container">
     <!--List of availiable images from Yelp-->
-        <div class="padding left">
+        <div id="yelp-pics" class="padding left">
             <ul id="image-list" class="mdc-image-list">
                 <li id="yelp-image" class="mdc-image-list__item">
                     <div id="image-container" class="mdc-image-list__image-aspect-container">
@@ -49,7 +49,7 @@
         </div>
     
     <!--Opening Hours-->
-        <div class="padding right">
+        <div id="hours" class="padding right">
             <table id="hours-table">
                 <tr>
                     <td><h3 class="subtitle">Hours</h3></td>
@@ -90,7 +90,7 @@
     <hr />
 
     <!--Average cost for two, menu link, online delivery status, and table reservation status-->
-    <div class="padded">
+    <div id="zomato-info" class="padded">
         <table id="zomato-table">
             <tr>
                 <td>Average cost for two</td>
