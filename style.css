@@ -51,6 +51,10 @@ body {
     margin: 0px;
 }
 
+#toggle-div {
+    margin: 15px 90px 15px 0px;
+}
+
 hr {
     clear: both;
 }
