@@ -9,15 +9,26 @@ $(document).ready(function() {
 
 function openMap()
 {
-    // retrieve the parent mdc card
-    var restaurantCard = $(this).parent().parent().parent();
+    var restaurant = $(this);
+
+    // check if caller is the mdc card or the marker
+    if(restaurant.is('button#map-button'))
+    {
+        // retrieve the parent div
+        restaurant = $(this).parent();
+    }
+    else if(restaurant.is('button#open-map'))
+    {
+        // retrieve the parent mdc card
+        restaurant = $(this).parent().parent().parent();
+    }
 
     loadScreen('map', function() {
-        var latitude = parseFloat(restaurantCard.attr('lat'));
-        var longitude = parseFloat(restaurantCard.attr('lng'));
-        var name = restaurantCard.find('#restaurant-name').text();
-        var address = restaurantCard.find('#restaurant-address').text();
-        var id = restaurantCard.attr('restaurant-id');
+        var latitude = parseFloat(restaurant.attr('lat'));
+        var longitude = parseFloat(restaurant.attr('lng'));
+        var name = restaurant.attr('name');
+        var address = restaurant.find('#restaurant-address').text();
+        var id = restaurant.attr('restaurant-id');
 
         var coordinates = { lat: latitude, lng: longitude };
 
@@ -60,34 +71,12 @@ function moreInfo()
             });
         });
     });
-
-    // YELP: 
-    // name
-    // rating
-    // photos[] (image list)
-    // display_phone
-    // location.display_address[]
-    // categories[].title (chips)
-    // price
-    // review count
-    // url (to view all reviews)
-    //  hours.open[].start (military time)
-    //  hours.opn[].end (military time)
-    //  hours.open[].day (0 is Monday, 6 is Sunday)
-    // hours.hours_type (e.g. regular, holiday, etc)
-    // hours.is_open_now
-
-    // ZOMATO:
-    // average_cost_for_two
-    // photos_url
-    // menu_url
-    // has_online_delivery
-    // is_table_reservation_supported
 }
 
 function displayInfo(yelpInfo, zomatoInfo)
 {
     // yelp info should always exist at this point, so no need to check for existence
+    var id = yelpInfo.id;
     var name = yelpInfo.name;
     var isOpen = yelpInfo.hours[0].is_open_now ? 'Open' : 'Closed';
     var rating = yelpInfo.rating + '/5 ★';
@@ -105,6 +94,8 @@ function displayInfo(yelpInfo, zomatoInfo)
     var imageListImage = $('#yelp-image').clone();
     var hoursType = yelpInfo.hours[0].hours_type;
     var hours = yelpInfo.hours[0].open;
+    var latitude = yelpInfo.coordinates.latitude;
+    var longitude = yelpInfo.coordinates.longitude;
 
     $('#restaurant-name').text(name);
     $('#is-open').text(isOpen);
@@ -112,7 +103,12 @@ function displayInfo(yelpInfo, zomatoInfo)
     $('#pricing').text(pricing);
     $('#number-reviews').children()[0].text = numReviews + ' Reviews';
     $('#number-reviews').children()[0].href = yelpURL;
-    $('#address').text(address);
+    $('#restaurant-address').text(address);
+    $('#address-and-map').attr('lat', latitude);
+    $('#address-and-map').attr('lng', longitude);
+    $('#address-and-map').attr('restaurant-id', id);
+    $('#address-and-map').attr('name', name)
+    $('#map-button').on('click', openMap);
     $('#phone').text(phone);
     $('#cuisine-type').addClass('hidden');
     cuisines.forEach(function (e) {
