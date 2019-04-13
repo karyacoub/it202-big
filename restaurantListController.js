@@ -27,7 +27,6 @@ function openMap()
         var latitude = parseFloat(restaurant.attr('lat'));
         var longitude = parseFloat(restaurant.attr('lng'));
         var name = restaurant.attr('name');
-        var name = restaurant.attr('name');
         var address = restaurant.attr('address');
         var id = restaurant.attr('restaurant-id');
 
@@ -65,6 +64,8 @@ function moreInfo()
     var name = restaurant.attr('name');
     var address = restaurant.attr('address');
     var imageSource = restaurant.attr('image-src');
+
+    addToDB('recentlyViewed', restaurantID, name, address, latitude, longitude, imageSource);
 
     // make api call to get restaurant info
     getYelpInfo(restaurantID, function(yelpInfo) {
@@ -236,6 +237,19 @@ function getZomatoInfo(lat, lng, callback)
         {
             callback({});
         }
+    });
+}
+
+function addToDB(dbName, restaurantID, restaurantName, restaurantAddress, latitude, longitude, imageSource)
+{
+    var store = dbName === 'favorited' ? db.favorited : db.recentlyViewed;
+    store.put({
+        id: restaurantID, 
+        name: restaurantName, 
+        address: restaurantAddress, 
+        lat: latitude, 
+        lng: longitude, 
+        img: imageSource
     });
 }
 
