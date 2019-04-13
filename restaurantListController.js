@@ -240,19 +240,6 @@ function getZomatoInfo(lat, lng, callback)
     });
 }
 
-function addToDB(dbName, restaurantID, restaurantName, restaurantAddress, latitude, longitude, imageSource)
-{
-    var store = dbName === 'favorited' ? db.favorited : db.recentlyViewed;
-    store.put({
-        id: restaurantID, 
-        name: restaurantName, 
-        address: restaurantAddress, 
-        lat: latitude, 
-        lng: longitude, 
-        img: imageSource
-    });
-}
-
 function militaryToStandardTime(time)
 {
     var hours = parseInt(time.substring(0, 2));
