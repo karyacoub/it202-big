@@ -56,26 +56,6 @@
                     .register('./sw.js')
                     .then(function() { console.log("Service Worker Registered"); });
         }
-
-        // initialize an IndexedDB for recently viewed and favorited restaurants
-        var db = new Dexie("restaurantsDB");
-        db.version(1).stores({
-            recentlyViewed: 'id, name, address, lat, lng, img',
-            favorited: 'id, name, address, lat, lng, img'
-        });
-
-        function addToDB(dbName, restaurantID, restaurantName, restaurantAddress, latitude, longitude, imageSource)
-        {
-            var store = dbName === 'favorited' ? db.favorited : db.recentlyViewed;
-            store.put({
-                id: restaurantID, 
-                name: restaurantName, 
-                address: restaurantAddress, 
-                lat: latitude, 
-                lng: longitude, 
-                img: imageSource
-            });
-        }
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

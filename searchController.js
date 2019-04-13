@@ -79,9 +79,6 @@ function displaySearchResults(businesses)
     var cardTemplate = $('.mdc-card').clone();
     cardTemplate.removeClass('hidden');
 
-    // clear restaurant list from previous search
-   $('#restaurant-list').empty();
-
    if(businesses.length == 0)
    {
        displayNoResults();

@@ -7,6 +7,22 @@
         </h1>
     </div>
     <div id="restaurant-list" class="h-centered">
-        
+        <div class="mdc-card mdc-card--outlined mdc-card__primary-action hidden" data-mdc-auto-init="MDCRipple">
+            <div id="card-header" class="card-header">
+                <h2 id="restaurant-name">Restaurant Name</h2>
+                <h3 id="restaurant-address">123 Street st., City, State</h3>
+            </div>
+            <div id="restaurant-image">
+                <img class="cropped-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png">
+            </div>
+            <div class="mdc-card__actions">
+                <div class="mdc-card__action-buttons">
+                    <button id="open-map" class="mdc-button mdc-card__action mdc-card__action--button">Map</button>
+                    <button id="more-info-card" class="mdc-button mdc-card__action mdc-card__action--button">More Info</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<script src="recentlyViewedController.js"></script>
