@@ -114,6 +114,8 @@ function displaySearchResults(businesses)
 
        // to make opening card from more info page possible
        card.attr('name', business.name);
+       card.attr('image-src', business.image_url);
+       card.attr('address', address);
 
        if(business.image_url !== undefined)
        {

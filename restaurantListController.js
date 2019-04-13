@@ -27,7 +27,8 @@ function openMap()
         var latitude = parseFloat(restaurant.attr('lat'));
         var longitude = parseFloat(restaurant.attr('lng'));
         var name = restaurant.attr('name');
-        var address = restaurant.find('#restaurant-address').text();
+        var name = restaurant.attr('name');
+        var address = restaurant.attr('address');
         var id = restaurant.attr('restaurant-id');
 
         var coordinates = { lat: latitude, lng: longitude };
@@ -61,6 +62,9 @@ function moreInfo()
     var restaurantID = restaurant.attr('restaurant-id');
     var latitude = restaurant.attr('lat');
     var longitude = restaurant.attr('lng');
+    var name = restaurant.attr('name');
+    var address = restaurant.attr('address');
+    var imageSource = restaurant.attr('image-src');
 
     // make api call to get restaurant info
     getYelpInfo(restaurantID, function(yelpInfo) {
