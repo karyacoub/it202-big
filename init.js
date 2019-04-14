@@ -17,13 +17,21 @@ db.open().catch(function(err) {
 function addToDB(dbName, restaurantID, restaurantName, restaurantAddress, latitude, longitude, imageSource)
 {
     var store = dbName === 'favorited' ? db.favorited : db.recentlyViewed;
-    store.put({
-        id: restaurantID, 
-        name: restaurantName, 
-        address: restaurantAddress, 
-        lat: latitude, 
-        lng: longitude, 
-        img: imageSource
+
+    // check if id already exists in db
+    store.get(restaurantID, function(e) {
+        if(e === undefined)
+        {
+            // element does not exist, add it
+            store.put({
+                id: restaurantID, 
+                name: restaurantName, 
+                address: restaurantAddress, 
+                lat: latitude, 
+                lng: longitude, 
+                img: imageSource
+            });
+        }
     });
 }
 

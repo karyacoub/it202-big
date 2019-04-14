@@ -1,4 +1,16 @@
 $(document).ready(function() {
+
+    displayDBInfo();
+    
+    // open map if map button is clicked
+    $('#restaurant-list-content').on('click', '#open-map', openMap);
+
+    // open info page if more info button is clicked
+    $('#restaurant-list-content').on('click', '#more-info-card', moreInfo);
+});
+
+function displayDBInfo()
+{
     // clone a template for card search result
     var cardTemplate = $('.mdc-card').clone();
     cardTemplate.removeClass('hidden');
@@ -31,5 +43,5 @@ $(document).ready(function() {
         // append card to restaurant list
         $('#restaurant-list').append(card);
     });
-});
+}
 
