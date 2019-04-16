@@ -1,7 +1,12 @@
 {
     "name": "Find-A-Restaurant",
     "short_name": "Find-A-Restaurant",
-    "icons": [],
+    "icons": [
+      {
+        "src": "./assets/icons/icon.png",
+        "type": "image/png"
+      }
+    ],
     "start_url": "./index.html",
     "scope": "./",
     "display": "standalone",
