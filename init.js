@@ -5,8 +5,7 @@ $(window).on('load', function() {
 // initialize an IndexedDB for recently viewed and favorited restaurants
 var db = new Dexie("restaurantsDB");
 db.version(1).stores({
-    recentlyViewed: 'id, name, address, lat, lng, img',
-    favorited: 'id, name, address, lat, lng, img'
+    recentlyViewed: 'id, name, address, lat, lng, img'
 });
 
 // open indexedDB
